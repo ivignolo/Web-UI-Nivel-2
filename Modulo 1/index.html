@@ -5,34 +5,10 @@
     <title>Modulo 2 exercise</title>
     <link rel="stylesheet" type="text/css" href="css/general.css">
 	<link rel="stylesheet" type="text/css" href="css/general.css">
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script src="js/main.js"></script>
+	
   </head>
   <body>
-	<script type="text/javascript">
-		function validateForm(){
-			error = false;
-			if($('#name').val() == null || $('#name').val() == ''){
-				error = true;
-			}
-			if($('#surname').val() == null || $('#surname').val() == ''){
-				error = true;
-			}
-			if($('#email').val() == null || $('#email').val() == ''){
-				error = true;
-			}
-			if($('#phone').val() == null || $('#phone').val() == ''){
-				error = true;
-			}
-			if(error){
-				showErrorMessage();
-				return false;
-			}else{
-				showSuccessMessage();
-				return true;
-			}
-		}
-	</script>
+	
 	<header>
 		<div id="header">
 			<img src="images/contacts.jpg"/>
@@ -46,15 +22,9 @@
 	</nav>
 	<article>
 	
-		<div id="msgPanelError" style="display:none">
-			<p>Por favor llenar todos los datos del formulario.</p>
-		</div>
-		<div id="msgPanelSuccess" style="display:none">
-			<p>Contacto guardado.</p>
-		</div>
-		<div id="msgPanelDeleteSuccess" style="display:none">
-			<p>El Contacto fue borrado.</p>
-		</div>
+		<div id="msgPanelError" style="display:none"></div>
+		<div id="msgPanelSuccess" style="display:none"></div>
+		<div id="msgPanelDeleteSuccess" style="display:none"></div>
 		
 		<div class="contact">
 			<h2>Contacto nuevo:</h2>
@@ -63,16 +33,40 @@
 				<label for="name">Apellido:</label> <input id="surname" type="text"><br />
 				<label for="email">Email:</label> <input id="email" type="text"><br />
 				<label for="phone">Telefono:</label> <input id="phone" type="text"><br /><br />
-				<button id="addButton" type="button" onclick="if (validateForm()){getFormData()}else{return false;}">Agregar Contacto</button>
+				<button id="addButton">Agregar Contacto</button>
 			</form>
 		</div>	
 		
 		<div class="contact">
 			<h2>Lista de Contactos:</h2>
-			<ul id="contactList">
+			<ul id="contacts-container">
 			</ul>
-		</div>	
+		</div>
+				
+		<script data-main="js/main" src="js/require.js"></script>
+				
+		<!-- Templates -->
 		
+		<script id="contactTemplate" type="text/x-handlebars-template">
+			<img src="images/contactImg.jpg"/><br /><br />
+			Nombre: <span class="name">{{name}}</span><br />
+			Apellido:<span class="surname">{{surname}}</span><br />
+			Email:<span class="email">{{email}}</span><br />
+			Telefono:<span class="phone">{{phone}}</span><br /><br />
+			<a href="#" class="edit">[edit]</a>
+			<a href="#" class="delete">[delete]</a>
+		</script>
+		
+		<!--<script type="text/template" id="contactTemplateUnderscore">
+			<img src="images/contactImg.jpg"/><br /><br />
+			Nombre: <span class="name"><%=name%></span><br />
+			Apellido:<span class="surname"><%=surname%></span><br />
+			Email:<span class="email"><%=email%></span><br />
+			Telefono:<span class="phone"><%=phone%></span><br /><br />
+			<a href="#" class="edit">[edit]</a>
+			<a href="#" class="delete">[delete]</a>
+		</script>-->
+				
 	</article>
 	<footer>
 		<div id="footer">
